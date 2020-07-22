@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Core;
+using DataService;
 using Infrastructure;
 using System;
 
@@ -17,8 +18,10 @@ namespace AutofacInternalConstructor
 
         void Run()
         {
-            var repository = Container.Resolve<IRepositoryFacade>();
-            Console.WriteLine(repository.GetData());
+            //var repository = Container.Resolve<IRepositoryFacade>();
+            //Console.WriteLine(repository.GetData());
+            var dataService = Container.Resolve<IDataService>();
+            Console.WriteLine(dataService.Get());
 
             // InternalRepository can be resolved but has only explicitly
             // implemented interface members. Since IInternalRepository is
@@ -32,6 +35,7 @@ namespace AutofacInternalConstructor
         {
             var builder = new ContainerBuilder();
 
+            builder.RegisterType<Data>().As<IDataService>();
             builder.RegisterType<RepositoryFacade>().As<IRepositoryFacade>();
             builder.RegisterType<InternalRepository>()
                 .FindConstructorsWith(new AllConstructorFinder())
