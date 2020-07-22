@@ -4,7 +4,7 @@ namespace Infrastructure
 {
     public class RepositoryFacade : IRepositoryFacade
     {
-        private readonly InternalRepository _internalRepository;
+        private readonly IInternalRepository _internalRepository;
         public RepositoryFacade(InternalRepository repository)
         {
             _internalRepository = repository;
@@ -12,7 +12,7 @@ namespace Infrastructure
 
         public string GetData()
         {
-            return ((IInternalRepository)_internalRepository).GetData();
+            return _internalRepository.GetData();
         }
     }
 }
