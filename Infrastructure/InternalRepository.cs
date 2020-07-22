@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure
 {
-    public class InternalRepository : IInternalRepository
+    sealed public class InternalRepository : IInternalRepository
     {
         internal InternalRepository()
         {
